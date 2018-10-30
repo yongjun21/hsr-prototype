@@ -1,0 +1,4 @@
+data/raw/china-latest.osm.pbf filter=lfs diff=lfs merge=lfs -text
+data/raw/china-latest-free.shp.zip filter=lfs diff=lfs merge=lfs -text
+data/processed/china_railways.json filter=lfs diff=lfs merge=lfs -text
+data/processed/china_transport.json filter=lfs diff=lfs merge=lfs -text

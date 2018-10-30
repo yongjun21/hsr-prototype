@@ -7,13 +7,22 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "file-saver": "^2.0.0-rc.4",
+    "lodash": "^4.17.11",
+    "mapbox-gl": "^0.50.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {
+    "@st-graphics/backend": "^0.1.20",
+    "@turf/bbox": "^6.0.1",
+    "@turf/clean-coords": "^6.0.1",
+    "@turf/simplify": "^5.1.5",
     "@vue/cli-plugin-babel": "^3.0.0-rc.5",
     "@vue/cli-service": "^3.0.0-rc.5",
     "dart-sass": "^1.14.3",
+    "osmium": "^0.5.7",
     "sass-loader": "^7.1.0",
+    "shapefile": "^0.6.6",
     "vue-template-compiler": "^2.5.17"
   },
   "postcss": {
