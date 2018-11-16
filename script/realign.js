@@ -3,7 +3,7 @@ const fs = require('fs')
 const railways = require('../data/processed/china_railways.json').features
   .filter(f => f.properties.fclass === 'rail')
 
-const picked = require('../data/processed/manual-trimmed.json').features
+const picked = require('../data/processed/manual_cleaned.json').features
 
 railways.forEach(f => {
   f.id = f.properties.osm_id

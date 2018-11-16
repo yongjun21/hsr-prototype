@@ -1,5 +1,7 @@
+require('./trim')
+
 const fs = require('fs')
-const trimmed = require('../data/processed/cleaned.json')
+const trimmed = JSON.parse(fs.readFileSync('data/processed/cleaned.json'))
 
 const {mergeLineString} = require('./helpers')
 

@@ -7,6 +7,7 @@ const railways = require('../data/processed/china_railways.json').features
 
 railways.forEach(f => {
   f.id = f.properties.osm_id
+  f.properties.label = f.properties.name
 })
 
 const seeds = [

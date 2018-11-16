@@ -1,14 +1,18 @@
+require('./chain')
+
 const fs = require('fs')
 const _simplify = require('@turf/simplify').default
 
 const {getTwoEnds} = require('./helpers')
 
-const original = require('../data/processed/cleaned.json')[0]
+const original = JSON.parse(fs.readFileSync('data/processed/cleaned.json'))[0]
 
-const simplified = {
+const merged = {
   type: 'FeatureCollection',
   features: [{
+    id: 0,
     type: 'Feature',
+    properties: {},
     geometry: {
       type: 'LineString',
       coordinates: original.features
@@ -22,8 +26,10 @@ const simplified = {
   }]
 }
 
-console.log(simplified.features[0].geometry.coordinates.length)
-_simplify(simplified, {mutate: true, highQuality: true, tolerance: 0.0001})
-console.log(simplified.features[0].geometry.coordinates.length)
+const simplified = [
+  _simplify(merged, {highQuality: true, tolerance: 0.00001}),
+  _simplify(merged, {highQuality: true, tolerance: 0.0001}),
+  _simplify(merged, {highQuality: true, tolerance: 0.001})
+]
 
-fs.writeFileSync('data/processed/cleaned.json', JSON.stringify([simplified], null, 2))
+fs.writeFileSync('data/processed/cleaned.json', JSON.stringify(simplified, null, 2))

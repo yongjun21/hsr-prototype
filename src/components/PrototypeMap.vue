@@ -9,6 +9,12 @@ import mapboxgl from 'mapbox-gl'
 import saveAs from 'file-saver'
 
 export default {
+  props: {
+    src: {
+      type: String,
+      default: './data.json'
+    }
+  },
   data () {
     return {
       style: {
@@ -71,7 +77,7 @@ export default {
           map.on('mouseover', layer, e => {
             this.style = {cursor: 'pointer'}
             const feature = e.features[0]
-            popover.setText(feature.properties.name)
+            popover.setText(feature.properties.label)
             popover
               .setLngLat(e.lngLat)
               .addTo(map)
@@ -109,8 +115,8 @@ export default {
     }
   },
   mounted () {
-    window.fetch('./data.json').then(res => res.json()).then(subgraphs => {
-      this.mountMap(this.$el, pickSubgraphs(subgraphs, 0, 1, 2, 4, 5))
+    window.fetch(this.src).then(res => res.json()).then(subgraphs => {
+      this.mountMap(this.$el, pickSubgraphs(subgraphs, 0))
     })
   }
 }
