@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <prototype-map></prototype-map>
+    <my-story></my-story>
   </div>
 </template>
 
 <script>
 import PrototypeMap from './components/PrototypeMap.vue'
+import MyStory from './components/MyStory.vue'
 
 export default {
   name: 'app',
   components: {
-    PrototypeMap
+    PrototypeMap,
+    MyStory
   }
 }
 </script>
