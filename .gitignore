@@ -4,6 +4,10 @@ node_modules
 
 data/raw/unpacked/
 
+data/kml/*
+!data/kml/base.kml
+!data/kml/tour.kml
+
 # local env files
 .env.local
 .env.*.local
