@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- <prototype-map></prototype-map> -->
     <my-story></my-story>
   </div>
 </template>
