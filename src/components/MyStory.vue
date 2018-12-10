@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       videoSources: [
-        {src: './test2.mp4', type: 'video/mp4'}
+        {src: './hk2sz.mp4', type: 'video/mp4'}
       ]
     }
   },

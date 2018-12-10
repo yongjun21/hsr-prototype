@@ -131,6 +131,9 @@ function generateTour (path) {
         <altitudeMode>absolute</altitudeMode>
       </LookAt>
     </gx:FlyTo>
+    <gx:Wait>
+      <gx:duration>${config.TRANSITION_PAUSE}</gx:duration>
+    </gx:Wait>
     `
 
     // JOURNEY
@@ -164,6 +167,9 @@ function generateTour (path) {
   toCheckpoints.forEach(cp => {
     const nextCoord = cp.coordinates || path.geometry.coordinates[path.geometry.coordinates.length - 1]
     $camera.push(`
+    <gx:Wait>
+      <gx:duration>${config.TRANSITION_PAUSE}</gx:duration>
+    </gx:Wait>
     <gx:FlyTo>
       <gx:duration>${config.TRANSITION_TIME}</gx:duration>
       <LookAt>
