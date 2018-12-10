@@ -1,4 +1,8 @@
+/* eslint-disable curly */
+
 const fs = require('fs')
+
+const config = require('./config')
 
 const features = require('../data/processed/tour_data.json').features
 const lineFeatures = features.filter(f => f.geometry.type === 'LineString')
@@ -6,17 +10,6 @@ const pointFeatures = features.filter(f => f.geometry.type === 'Point')
 
 const baseKML = fs.readFileSync('data/kml/base.kml', {encoding: 'utf-8'})
 const tourKML = fs.readFileSync('data/kml/tour.kml', {encoding: 'utf-8'})
-
-const TARGET_DURATION = 15
-
-const cameraProps = {
-  hongkong_west_kowloon_to_shenzhen_north: {range: 10000, tilt: 40},
-  shenzhen_north_to_guangzhou_south: {range: 10000, tilt: 40},
-  guangzhou_south_to_changsha_south: {range: 10000, tilt: 40},
-  changsha_south_to_wuhan: {range: 10000, tilt: 40},
-  wuhan_to_shijiazhuang: {range: 10000, tilt: 40},
-  shijiazhuang_to_beijing_west: {range: 10000, tilt: 40}
-}
 
 generateBase()
 lineFeatures.forEach(generateTour)
@@ -95,33 +88,51 @@ function generateTour (path) {
     `
   })
 
-  const $camera = path.geometry.coordinates.map((coord, i) => {
-    if (i === 0) {
-      return `
+  const $camera = []
+
+  // ENTER
+  const fromCheckpoints = config.CHECKPOINTS[path.properties.from]
+  const toCheckpoints = config.CHECKPOINTS[path.properties.to]
+  const lastCP = fromCheckpoints[fromCheckpoints.length - 1]
+  const initialCoord = lastCP.coordinates || path.geometry.coordinates[0]
+  $camera.push(`
+    <LookAt>
+      <longitude>${initialCoord[0]}</longitude>
+      <latitude>${initialCoord[0]}</latitude>
+      <heading>${lastCP.heading || 0}</heading>
+      <tilt>${lastCP.tilt}</tilt>
+      <range>${lastCP.range}</range>
+      <altitude>0</altitude>
+      <altitudeMode>clampedToGround</altitudeMode>
+    </LookAt>
+  `)
+
+  // JOURNEY
+  path.geometry.coordinates.forEach((coord, i) => {
+    if (i === 0) $camera.push(`
     <gx:FlyTo>
-      <gx:duration>3.000</gx:duration>
+      <gx:duration>${config.TRANSITION_TIME}</gx:duration>
       <LookAt>
         <longitude>${coord[0].toFixed(6)}</longitude>
         <latitude>${coord[1].toFixed(6)}</latitude>
-        <tilt>${cameraProps[name].tilt}</tilt>
-        <range>${cameraProps[name].range}</range>
+        <tilt>${config.TRANSIT[name].tilt}</tilt>
+        <range>${config.TRANSIT[name].range}</range>
         <altitude>0</altitude>
         <altitudeMode>clampedToGround</altitudeMode>
       </LookAt>
     </gx:FlyTo>
-    `
-    }
+    `)
 
-    const duration = path.properties.distance[i] / path.properties.totalDistance * TARGET_DURATION
-    return `
+    const duration = path.properties.distance[i] / path.properties.totalDistance * config.TRANSIT[name].duration
+    $camera.push(`
     <gx:FlyTo>
       <gx:duration>${duration.toFixed(3)}</gx:duration>
       <gx:flyToMode>smooth</gx:flyToMode>
       <LookAt>
         <longitude>${coord[0].toFixed(6)}</longitude>
         <latitude>${coord[1].toFixed(6)}</latitude>
-        <tilt>${cameraProps[name].tilt}</tilt>
-        <range>${cameraProps[name].range}</range>
+        <tilt>${config.TRANSIT[name].tilt}</tilt>
+        <range>${config.TRANSIT[name].range}</range>
         <altitude>0</altitude>
         <altitudeMode>clampedToGround</altitudeMode>
       </LookAt>
@@ -135,7 +146,26 @@ function generateTour (path) {
         </Change>
       </Update>
     </gx:AnimatedUpdate>
-    `
+    `)
+  })
+
+  // EXIT
+  toCheckpoints.forEach(cp => {
+    const nextCoord = cp.coordinates || path.geometry.coordinates[path.geometry.coordinates.length - 1]
+    $camera.push(`
+    <gx:FlyTo>
+      <gx:duration>${config.TRANSITION_TIME}</gx:duration>
+      <LookAt>
+        <longitude>${nextCoord[0]}</longitude>
+        <latitude>${nextCoord[1]}</latitude>
+        <heading>${cp.heading || 0}</heading>
+        <tilt>${cp.tilt}</tilt>
+        <range>${cp.range}</range>
+        <altitude>0</altitude>
+        <altitudeMode>clampedToGround</altitudeMode>
+      </LookAt>
+    </gx:FlyTo>
+    `)
   })
 
   const generatedKML = tourKML
