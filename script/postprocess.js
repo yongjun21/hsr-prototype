@@ -2,11 +2,9 @@ const fs = require('fs')
 const _distance = require('@turf/distance').default
 const _nearestPointOnLine = require('@turf/nearest-point-on-line').default
 
+const config = require('./config')
 const data = require('../data/processed/cleaned.json')
 const linestring = data[0].features[0].geometry
-
-const TARGET_DURATION = 15
-const FRAME_RATE = 30
 
 const coordinates = {
   hongkong_west_kowloon: [114.165390, 22.303713],
@@ -33,7 +31,8 @@ stations.forEach((to, i) => {
     id: 'station_' + i,
     type: 'Feature',
     properties: {
-      name: formatName(to)
+      name: to,
+      label: formatName(to)
     },
     geometry: {
       type: 'Point',
@@ -50,7 +49,8 @@ stations.forEach((to, i) => {
     corrected[to].geometry.coordinates
   ]
   const originalDistance = getDistance(original).reduce((sum, d) => sum + d, 0)
-  const coordinates = dice(original, originalDistance / (TARGET_DURATION * FRAME_RATE))
+  const TOTAL_FRAMES = config.TRANSIT[from + '_to_' + to].duration * config.FRAME_RATE
+  const coordinates = dice(original, originalDistance / TOTAL_FRAMES)
   const distance = getDistance(coordinates)
   const totalDistance = distance.reduce((sum, d) => sum + d, 0)
   features.push({

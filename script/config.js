@@ -9,7 +9,7 @@ const TRANSIT = {
 
 const CHECKPOINTS = {
   hongkong_west_kowloon: [
-    {range: 10000, tilt: 40}
+    {range: 100000, tilt: 0}
   ],
   shenzhen_north: [
     {range: 10000, tilt: 40}
@@ -32,5 +32,6 @@ const CHECKPOINTS = {
 }
 
 const TRANSITION_TIME = 3
+const FRAME_RATE = 30
 
-module.exports = {TRANSIT, CHECKPOINTS, TRANSITION_TIME}
+module.exports = {TRANSIT, CHECKPOINTS, TRANSITION_TIME, FRAME_RATE}
