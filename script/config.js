@@ -1,10 +1,10 @@
 const TRANSIT = {
-  hongkong_west_kowloon_to_shenzhen_north: {range: 52000, tilt: 0, duration: 7}, // dist: 38.7198
-  shenzhen_north_to_guangzhou_south: {range: 52000, tilt: 0, duration: 10}, // dist: 102.4126
-  guangzhou_south_to_changsha_south: {range: 52000, tilt: 0, duration: 20}, // dist: 620.0347
+  hongkong_west_kowloon_to_shenzhen_north: {range: 32000, tilt: 0, duration: 7}, // dist: 38.7198
+  shenzhen_north_to_guangzhou_south: {range: 42000, tilt: 0, duration: 10}, // dist: 102.4126
+  guangzhou_south_to_changsha_south: {range: 60000, tilt: 0, duration: 15}, // dist: 620.0347
   changsha_south_to_wuhan: {range: 52000, tilt: 0, duration: 13}, // dist: 347.7061
-  wuhan_to_zhengzhou_east: {range: 52000, tilt: 0, duration: 20}, // dist: 856.0625
-  zhengzhou_east_to_shijiazhuang: {range: 52000, tilt: 0, duration: 20}, // dist: 856.0625,
+  wuhan_to_zhengzhou_east: {range: 52000, tilt: 0, duration: 10},
+  zhengzhou_east_to_shijiazhuang: {range: 52000, tilt: 0, duration: 10},
   shijiazhuang_to_beijing_west: {range: 52000, tilt: 0, duration: 10} // dist: 280.9590
 }
 
@@ -35,7 +35,7 @@ const CHECKPOINTS = {
   ]
 }
 
-const TRANSITION_TIME = 5
+const TRANSITION_TIME = 4
 const FRAME_RATE = 30
 
 module.exports = {
