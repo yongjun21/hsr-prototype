@@ -167,6 +167,7 @@ function generateTour (path) {
     $camera.push(`
     <gx:FlyTo>
       <gx:duration>${config.TRANSITION_TIME}</gx:duration>
+      <gx:flyToMode>smooth</gx:flyToMode>
       <LookAt>
         <longitude>${nextCoord[0]}</longitude>
         <latitude>${nextCoord[1]}</latitude>

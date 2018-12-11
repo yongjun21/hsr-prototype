@@ -12,6 +12,7 @@ const coordinates = {
   guangzhou_south: [113.264403, 22.991768],
   changsha_south: [113.059129, 28.150135],
   wuhan: [114.418640, 30.609336],
+  zhengzhou_east: [113.772235, 34.759995],
   shijiazhuang: [114.478072, 38.009884],
   beijing_west: [116.315098, 39.892564]
 }

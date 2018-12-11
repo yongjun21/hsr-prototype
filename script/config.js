@@ -3,7 +3,8 @@ const TRANSIT = {
   shenzhen_north_to_guangzhou_south: {range: 52000, tilt: 0, duration: 10}, // dist: 102.4126
   guangzhou_south_to_changsha_south: {range: 52000, tilt: 0, duration: 20}, // dist: 620.0347
   changsha_south_to_wuhan: {range: 52000, tilt: 0, duration: 13}, // dist: 347.7061
-  wuhan_to_shijiazhuang: {range: 52000, tilt: 0, duration: 20}, // dist: 856.0625
+  wuhan_to_zhengzhou_east: {range: 52000, tilt: 0, duration: 20}, // dist: 856.0625
+  zhengzhou_east_to_shijiazhuang: {range: 52000, tilt: 0, duration: 20}, // dist: 856.0625,
   shijiazhuang_to_beijing_west: {range: 52000, tilt: 0, duration: 10} // dist: 280.9590
 }
 
@@ -22,6 +23,9 @@ const CHECKPOINTS = {
   ],
   wuhan: [
     {coordinates: [114.276466, 30.504629], range: 20267, tilt: 48, heading: 19}
+  ],
+  zhengzhou_east: [
+    {coordinates: [113.636560, 34.699120], range: 23566, tilt: 51, heading: 37}
   ],
   shijiazhuang: [
     {coordinates: [114.488498, 37.991969], range: 10255, tilt: 55, heading: 2}
