@@ -3,7 +3,7 @@
 cd video
 
 function process {
-  ffmpeg -i raw/$1.mp4 -vcodec libx264 -x264-params keyint=30:scenecut=0 -acodec copy -pix_fmt yuv420p -crf 23 processed/$1.mp4
+  ffmpeg -i raw/$1.mp4 -vcodec libx264 -x264-params keyint=30:scenecut=0 -an -pix_fmt yuv420p -crf 23 -movflags faststart processed/$1.mp4
 }
 
 if [ $# -gt 0 ]

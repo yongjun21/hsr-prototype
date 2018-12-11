@@ -31,14 +31,12 @@ const CHECKPOINTS = {
   ]
 }
 
-const TRANSITION_TIME = 3.5
-const TRANSITION_PAUSE = 0.5
+const TRANSITION_TIME = 3
 const FRAME_RATE = 30
 
 module.exports = {
   TRANSIT,
   CHECKPOINTS,
   TRANSITION_TIME,
-  TRANSITION_PAUSE,
   FRAME_RATE
 }
