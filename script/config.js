@@ -1,37 +1,37 @@
 const TRANSIT = {
-  hongkong_west_kowloon_to_shenzhen_north: {range: 52000, tilt: 0, heading: 10, duration: 1.4}, // dist: 38.7198
-  shenzhen_north_to_guangzhou_south: {range: 10000, tilt: 0, duration: 3.6}, // dist: 102.4126
-  guangzhou_south_to_changsha_south: {range: 10000, tilt: 0, duration: 22.1}, // dist: 620.0347
-  changsha_south_to_wuhan: {range: 10000, tilt: 0, duration: 12.4}, // dist: 347.7061
-  wuhan_to_shijiazhuang: {range: 10000, tilt: 0, duration: 30.5}, // dist: 856.0625
-  shijiazhuang_to_beijing_west: {range: 10000, tilt: 0, duration: 10.0} // dist: 280.9590
+  hongkong_west_kowloon_to_shenzhen_north: {range: 52000, tilt: 0, duration: 7}, // dist: 38.7198
+  shenzhen_north_to_guangzhou_south: {range: 52000, tilt: 0, duration: 10}, // dist: 102.4126
+  guangzhou_south_to_changsha_south: {range: 52000, tilt: 0, duration: 20}, // dist: 620.0347
+  changsha_south_to_wuhan: {range: 52000, tilt: 0, duration: 13}, // dist: 347.7061
+  wuhan_to_shijiazhuang: {range: 52000, tilt: 0, duration: 20}, // dist: 856.0625
+  shijiazhuang_to_beijing_west: {range: 52000, tilt: 0, duration: 10} // dist: 280.9590
 }
 
 const CHECKPOINTS = {
   hongkong_west_kowloon: [
-    {coordinates: [114.161703, 22.289759], range: 7100, tilt: 54, heading: 36}
+    {coordinates: [114.160900, 22.285381], range: 5849, tilt: 52, heading: 38}
   ],
   shenzhen_north: [
-    {coordinates: [114.041537, 22.526765], range: 6000, tilt: 54, heading: 36}
+    {coordinates: [114.034984, 22.533823], range: 7501, tilt: 46, heading: 39}
   ],
   guangzhou_south: [
-    {coordinates: [113.309925, 23.100481], range: 10000, tilt: 40}
+    {coordinates: [113.283313, 23.043461], range: 18580, tilt: 52, heading: 28}
   ],
   changsha_south: [
-    {coordinates: [112.964496, 28.192951], range: 10000, tilt: 40}
+    {coordinates: [112.969073, 28.161649], range: 19649, tilt: 48, heading: -35}
   ],
   wuhan: [
-    {coordinates: [114.272526, 30.517163], range: 10000, tilt: 40}
+    {coordinates: [114.276466, 30.504629], range: 20267, tilt: 48, heading: 19}
   ],
   shijiazhuang: [
-    {coordinates: [114.488105, 38.002674], range: 10000, tilt: 40}
+    {coordinates: [114.488498, 37.991969], range: 10255, tilt: 55, heading: 2}
   ],
   beijing_west: [
-    {coordinates: [116.397819, 39.901404], range: 10000, tilt: 40}
+    {coordinates: [116.398056, 39.890202], range: 16302, tilt: 48, heading: 0}
   ]
 }
 
-const TRANSITION_TIME = 3
+const TRANSITION_TIME = 5
 const FRAME_RATE = 30
 
 module.exports = {

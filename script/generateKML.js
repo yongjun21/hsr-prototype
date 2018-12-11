@@ -122,6 +122,7 @@ function generateTour (path) {
     if (i === 0) return `
     <gx:FlyTo>
       <gx:duration>${config.TRANSITION_TIME}</gx:duration>
+      <gx:flyToMode>smooth</gx:flyToMode>
       <LookAt>
         <longitude>${coord[0].toFixed(6)}</longitude>
         <latitude>${coord[1].toFixed(6)}</latitude>
