@@ -4,8 +4,8 @@
 
 <Style id="animated-style">
   <LineStyle>
-    <color>ff00ffff</color>
-    <width>5</width>
+    <color>ffffffff</color>
+    <width>3</width>
   </LineStyle>
 </Style>
 
