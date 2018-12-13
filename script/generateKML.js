@@ -11,6 +11,7 @@ const baseKML = fs.readFileSync('data/kml/base.kml', {encoding: 'utf-8'})
 const tourKML = fs.readFileSync('data/kml/tour.kml', {encoding: 'utf-8'})
 
 generateBase()
+generateEnterScene()
 lineFeatures.forEach(generateTour)
 
 function generateBase () {
@@ -69,6 +70,50 @@ function generateBase () {
     .replace('<!-- ROUTES -->', $routes.join(''))
 
   fs.writeFileSync('data/kml/static.kml', generatedKML)
+}
+
+function generateEnterScene () {
+  const overview = config.CHECKPOINTS.overview
+  const firstCP = config.CHECKPOINTS[pointFeatures[0].properties.name]
+
+  const $initial = `
+<Placemark>
+  <name>INITIAL</name>
+  <LookAt>
+    <longitude>${overview.coordinates[0]}</longitude>
+    <latitude>${overview.coordinates[1]}</latitude>
+    <heading>${overview.heading || 0}</heading>
+    <tilt>${overview.tilt}</tilt>
+    <range>${overview.range}</range>
+    <altitude>50</altitude>
+    <altitudeMode>absolute</altitudeMode>
+  </LookAt>
+</Placemark>
+  `
+
+  const $camera = firstCP.map(cp => {
+    const nextCoord = cp.coordinates || lineFeatures[0].geometry.coordinates[lineFeatures[0].geometry.coordinates.length - 1]
+    return `
+    <gx:FlyTo>
+      <gx:duration>${config.TRANSITION_TIME}</gx:duration>
+      <LookAt>
+        <longitude>${nextCoord[0]}</longitude>
+        <latitude>${nextCoord[1]}</latitude>
+        <heading>${cp.heading || 0}</heading>
+        <tilt>${cp.tilt}</tilt>
+        <range>${cp.range}</range>
+        <altitude>50</altitude>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+    </gx:FlyTo>
+    `
+  })
+
+  const generatedKML = tourKML
+    .replace('<!-- INITIAL -->', $initial)
+    .replace('<!-- CAMERA -->', $camera.join(''))
+
+  fs.writeFileSync('data/kml/enter.kml', generatedKML)
 }
 
 function generateTour (path) {

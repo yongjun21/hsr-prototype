@@ -16,3 +16,5 @@ video/processed/cs2wh.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/wh2zz.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/zz2sjz.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/sjz2bj.mp4 filter=lfs diff=lfs merge=lfs -text
+video/raw/enter.m4v filter=lfs diff=lfs merge=lfs -text
+video/processed/enter.mp4 filter=lfs diff=lfs merge=lfs -text
