@@ -91,11 +91,12 @@ function generateEnterScene () {
 </Placemark>
   `
 
-  const $camera = firstCP.map(cp => {
+  const $camera = firstCP.map((cp, i) => {
     const nextCoord = cp.coordinates || lineFeatures[0].geometry.coordinates[lineFeatures[0].geometry.coordinates.length - 1]
     return `
     <gx:FlyTo>
-      <gx:duration>${config.TRANSITION_TIME}</gx:duration>
+      <gx:duration>${i === 0 ? config.ENTER_TIME : config.TRANSITION_TIME}</gx:duration>
+      <gx:flyToMode>${i === 0 ? 'bounce' : 'smooth'}</gx:flyToMode>
       <LookAt>
         <longitude>${nextCoord[0]}</longitude>
         <latitude>${nextCoord[1]}</latitude>

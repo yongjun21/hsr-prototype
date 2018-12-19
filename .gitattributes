@@ -18,3 +18,7 @@ video/processed/zz2sjz.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/sjz2bj.mp4 filter=lfs diff=lfs merge=lfs -text
 video/raw/enter.m4v filter=lfs diff=lfs merge=lfs -text
 video/processed/enter.mp4 filter=lfs diff=lfs merge=lfs -text
+video/processed/mobile/enter.mp4 filter=lfs diff=lfs merge=lfs -text
+video/processed/mobile/gz2cs.mp4 filter=lfs diff=lfs merge=lfs -text
+video/processed/mobile/hk2sz.mp4 filter=lfs diff=lfs merge=lfs -text
+video/processed/mobile/sz2gz.mp4 filter=lfs diff=lfs merge=lfs -text

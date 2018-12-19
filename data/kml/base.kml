@@ -11,7 +11,7 @@
 
 <Style id="animated-style">
   <LineStyle>
-    <color>ff00ffff</color>
+    <color>ffffffff</color>
     <width>3</width>
   </LineStyle>
 </Style>

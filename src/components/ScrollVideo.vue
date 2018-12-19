@@ -1,14 +1,15 @@
 <template>
-  <video class="scroll-video"
-    width="100%"
-    height="100%"
-    :poster="poster"
-    preload="auto"
-    muted
-    playsinline>
-    <source v-for="source in sources" :src="source.src" :type="source.type">
-    <slot></slot>
-  </video>
+  <div class="scroll-video">
+    <video
+      ref="video"
+      :poster="poster"
+      preload="auto"
+      muted
+      playsinline>
+      <source v-for="source in sources" :src="source.src" :type="source.type">
+      <slot></slot>
+    </video>
+  </div>
 </template>
 
 <script>
@@ -42,11 +43,11 @@ export default {
     }
   },
   mounted () {
-    const $video = this.$el
+    const $video = this.$refs.video
     $video.addEventListener('loadedmetadata', e => {
       this.duration = $video.duration
       pollActualFrame.call(this)
-      const rewind = getThrottledRewind($video)
+      const seek = getThrottledSeek($video)
       this.$watch(() => this.targetFrame - this.actualFrame, diff => {
         if (diff > 0) {
           $video.playbackRate = Math.min(diff, 4)
@@ -55,7 +56,7 @@ export default {
           $video.pause()
           if (diff <= -this.rewindSpeed) {
             const time = (Math.ceil(this.targetFrame / this.rewindSpeed) * this.rewindSpeed) / this.framerate
-            rewind(time)
+            seek(time)
           }
         }
       }, {immediate: true})
@@ -67,7 +68,7 @@ export default {
   }
 }
 
-function getThrottledRewind ($video) {
+function getThrottledSeek ($video) {
   let waiting = null
   $video.addEventListener('seeked', e => {
     if (waiting != null) {
@@ -84,6 +85,26 @@ function getThrottledRewind ($video) {
 
 <style lang="scss">
 .scroll-video {
-  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+
+  & > video {
+    display: block;
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    @media screen and (max-aspect-ratio: 16/10) {
+      height: 100%;
+    }
+
+    @media screen and (min-aspect-ratio: 16/10) {
+      width: 100%;
+    }
+  }
 }
 </style>
