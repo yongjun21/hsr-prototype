@@ -2,6 +2,7 @@ data/raw/china-latest.osm.pbf filter=lfs diff=lfs merge=lfs -text
 data/raw/china-latest-free.shp.zip filter=lfs diff=lfs merge=lfs -text
 data/processed/china_railways.json filter=lfs diff=lfs merge=lfs -text
 data/processed/china_transport.json filter=lfs diff=lfs merge=lfs -text
+video/raw/enter.m4v filter=lfs diff=lfs merge=lfs -text
 video/raw/hk2sz.m4v filter=lfs diff=lfs merge=lfs -text
 video/raw/sz2gz.m4v filter=lfs diff=lfs merge=lfs -text
 video/raw/gz2cs.m4v filter=lfs diff=lfs merge=lfs -text
@@ -9,6 +10,7 @@ video/raw/cs2wh.m4v filter=lfs diff=lfs merge=lfs -text
 video/raw/wh2zz.m4v filter=lfs diff=lfs merge=lfs -text
 video/raw/zz2sjz.m4v filter=lfs diff=lfs merge=lfs -text
 video/raw/sjz2bj.m4v filter=lfs diff=lfs merge=lfs -text
+video/processed/enter.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/hk2sz.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/sz2gz.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/gz2cs.mp4 filter=lfs diff=lfs merge=lfs -text
@@ -16,9 +18,19 @@ video/processed/cs2wh.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/wh2zz.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/zz2sjz.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/sjz2bj.mp4 filter=lfs diff=lfs merge=lfs -text
-video/raw/enter.m4v filter=lfs diff=lfs merge=lfs -text
-video/processed/enter.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/mobile/enter.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/mobile/gz2cs.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/mobile/hk2sz.mp4 filter=lfs diff=lfs merge=lfs -text
 video/processed/mobile/sz2gz.mp4 filter=lfs diff=lfs merge=lfs -text
+video/raw/enter.webm filter=lfs diff=lfs merge=lfs -text
+video/raw/hk2sz.webm filter=lfs diff=lfs merge=lfs -text
+video/raw/sz2gz.webm filter=lfs diff=lfs merge=lfs -text
+video/raw/gz2cs.webm filter=lfs diff=lfs merge=lfs -text
+video/processed/hk2sz.webm filter=lfs diff=lfs merge=lfs -text
+video/processed/sz2gz.webm filter=lfs diff=lfs merge=lfs -text
+video/processed/enter.webm filter=lfs diff=lfs merge=lfs -text
+video/processed/gz2cs.webm filter=lfs diff=lfs merge=lfs -text
+video/processed/mobile/sz2gz.webm filter=lfs diff=lfs merge=lfs -text
+video/processed/mobile/enter.webm filter=lfs diff=lfs merge=lfs -text
+video/processed/mobile/gz2cs.webm filter=lfs diff=lfs merge=lfs -text
+video/processed/mobile/hk2sz.webm filter=lfs diff=lfs merge=lfs -text

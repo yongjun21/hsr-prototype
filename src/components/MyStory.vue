@@ -38,6 +38,7 @@ export default {
     getSources (key) {
       const prefix = window.innerWidth > 480 ? './video/' : './video/mobile/'
       return [
+        {src: prefix + key + '.webm', type: 'video/webm'},
         {src: prefix + key + '.mp4', type: 'video/mp4'}
       ]
     },
