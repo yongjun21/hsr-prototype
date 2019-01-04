@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "generate": "node script/generateKML.js",
     "deploy": "deploy-assets video/processed high-speed-rail/videos"
   },
   "dependencies": {

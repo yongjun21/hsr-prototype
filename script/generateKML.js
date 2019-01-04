@@ -2,13 +2,15 @@
 
 const fs = require('fs')
 
-const config = require('./config')
+const config = process.env.MOBILE ? require('./config-mobile') : require('./config')
 const features = require('../data/processed/tour_data.json').features
 const lineFeatures = features.filter(f => f.geometry.type === 'LineString')
 const pointFeatures = features.filter(f => f.geometry.type === 'Point')
 
 const baseKML = fs.readFileSync('data/kml/base.kml', {encoding: 'utf-8'})
 const tourKML = fs.readFileSync('data/kml/tour.kml', {encoding: 'utf-8'})
+
+const OUTPUT_DIR = process.env.MOBILE ? 'data/kml/mobile/' : 'data/kml/'
 
 generateBase()
 generateEnterScene()
@@ -69,7 +71,7 @@ function generateBase () {
     .replace('<!-- STATIONS -->', $stations.join(''))
     .replace('<!-- ROUTES -->', $routes.join(''))
 
-  fs.writeFileSync('data/kml/static.kml', generatedKML)
+  fs.writeFileSync(OUTPUT_DIR + 'static.kml', generatedKML)
 }
 
 function generateEnterScene () {
@@ -114,7 +116,7 @@ function generateEnterScene () {
     .replace('<!-- INITIAL -->', $initial)
     .replace('<!-- CAMERA -->', $camera.join(''))
 
-  fs.writeFileSync('data/kml/enter.kml', generatedKML)
+  fs.writeFileSync(OUTPUT_DIR + 'enter.kml', generatedKML)
 }
 
 function generateTour (path) {
@@ -232,5 +234,5 @@ function generateTour (path) {
     .replace('<!-- CAMERA -->', $camera.join(''))
     .replace('<!-- ANIMATED -->', $animated.join(''))
 
-  fs.writeFileSync(`data/kml/${name}.kml`, generatedKML)
+  fs.writeFileSync(OUTPUT_DIR + name + '.kml', generatedKML)
 }
