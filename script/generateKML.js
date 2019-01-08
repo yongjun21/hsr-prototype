@@ -23,7 +23,6 @@ function generateBase () {
     // STATIONS
     return `
 <Placemark>
-  <name>${f.properties.label}</name>
   <Point>
     <coordinates>${coordinates}</coordinates>
   </Point>
@@ -78,6 +77,26 @@ function generateEnterScene () {
   const overview = config.CHECKPOINTS.overview
   const firstCP = config.CHECKPOINTS[pointFeatures[0].properties.name]
 
+  const $animated = pointFeatures.map(f => {
+    const coordinates = f.geometry.coordinates.map(v => v.toFixed(6)).join(',')
+
+    return `
+<Placemark id="long_${f.properties.name}">
+  <visibility>0</visibility>
+  <Point>
+    <coordinates>${coordinates}</coordinates>
+  </Point>
+</Placemark>
+
+<Placemark id="short_${f.properties.name}">
+  <visibility>1</visibility>
+  <Point>
+    <coordinates>${coordinates}</coordinates>
+  </Point>
+</Placemark>
+    `
+  })
+
   const $initial = `
 <Placemark>
   <name>INITIAL</name>
@@ -93,12 +112,49 @@ function generateEnterScene () {
 </Placemark>
   `
 
+  const $toggleIcons = pointFeatures.map(f => {
+    return `
+          <Placemark targetId="long_${f.properties.name}">
+            <visibility>1</visibility>
+          </Placemark>
+
+          <Placemark targetId="short_${f.properties.name}">
+            <visibility>0</visibility>
+          </Placemark>
+    `
+  })
+
   const $camera = firstCP.map((cp, i) => {
-    const nextCoord = cp.coordinates || lineFeatures[0].geometry.coordinates[lineFeatures[0].geometry.coordinates.length - 1]
+    const nextCoord = cp.coordinates || lineFeatures[0].geometry.coordinates[0]
+
+    if (i === 0) return `
+    <gx:FlyTo>
+      <gx:duration>${config.ENTER_TIME}</gx:duration>
+      <gx:flyToMode>bounce</gx:flyToMode>
+      <LookAt>
+        <longitude>${nextCoord[0]}</longitude>
+        <latitude>${nextCoord[1]}</latitude>
+        <heading>${cp.heading || 0}</heading>
+        <tilt>${cp.tilt}</tilt>
+        <range>${cp.range}</range>
+        <altitude>50</altitude>
+        <altitudeMode>absolute</altitudeMode>
+      </LookAt>
+    </gx:FlyTo>
+
+    <gx:AnimatedUpdate>
+      <Update>
+        <Change>
+          ${$toggleIcons.join('')}
+        </Change>
+      </Update>
+    </gx:AnimatedUpdate>
+    `
+
     return `
     <gx:FlyTo>
-      <gx:duration>${i === 0 ? config.ENTER_TIME : config.TRANSITION_TIME}</gx:duration>
-      <gx:flyToMode>${i === 0 ? 'bounce' : 'smooth'}</gx:flyToMode>
+      <gx:duration>${config.TRANSITION_TIME}</gx:duration>
+      <gx:flyToMode>smooth</gx:flyToMode>
       <LookAt>
         <longitude>${nextCoord[0]}</longitude>
         <latitude>${nextCoord[1]}</latitude>
@@ -115,6 +171,7 @@ function generateEnterScene () {
   const generatedKML = tourKML
     .replace('<!-- INITIAL -->', $initial)
     .replace('<!-- CAMERA -->', $camera.join(''))
+    .replace('<!-- ANIMATED -->', $animated.join(''))
 
   fs.writeFileSync(OUTPUT_DIR + 'enter.kml', generatedKML)
 }
