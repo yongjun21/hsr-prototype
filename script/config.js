@@ -9,7 +9,7 @@ const TRANSIT = {
 }
 
 const CHECKPOINTS = {
-  overview: {coordinates: [114.633611, 26.556607], range: 2500000, tilt: 40, heading: 0},
+  overview: {coordinates: [115.292158, 31.088956], range: 3356561, tilt: 0, heading: 0},
   hongkong_west_kowloon: [
     {coordinates: [114.161703, 22.289759], range: 10000, tilt: 0, heading: 0},
     {coordinates: [114.161703, 22.289759], range: 6000, tilt: 54, heading: 36}
@@ -21,19 +21,19 @@ const CHECKPOINTS = {
     {coordinates: [113.278801, 23.064849], range: 25000, tilt: 45, heading: 36}
   ],
   changsha_south: [
-    {coordinates: [112.989842, 28.159448], range: 25000, tilt: 54, heading: -36}
+    {coordinates: [112.989842, 28.159448], range: 39000, tilt: 54, heading: -36}
   ],
   wuhan: [
-    {coordinates: [114.272526, 30.517163], range: 20000, tilt: 60, heading: 24}
+    {coordinates: [114.272526, 30.517163], range: 28000, tilt: 60, heading: 12}
   ],
   zhengzhou_east: [
-    {coordinates: [113.635864, 34.722789], range: 20000, tilt: 55, heading: 36}
+    {coordinates: [113.635864, 34.722789], range: 32800, tilt: 55, heading: 36}
   ],
   shijiazhuang: [
-    {coordinates: [114.488105, 38.002674], range: 15000, tilt: 64, heading: 0}
+    {coordinates: [114.487613, 37.987364], range: 21400, tilt: 59, heading: 0}
   ],
   beijing_west: [
-    {coordinates: [116.397819, 39.901404], range: 15000, tilt: 48, heading: 0}
+    {coordinates: [116.397819, 39.901404], range: 23250, tilt: 48, heading: -1}
   ]
 }
 
