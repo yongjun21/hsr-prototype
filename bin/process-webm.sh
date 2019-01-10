@@ -7,7 +7,7 @@ function process {
   then
     ffmpeg -i raw/$1.webm -c:v libvpx-vp9 -b:v 0 -crf 42 -g 30 -an -threads 7 -vf crop=1920:1200:0:120,eq=saturation=1.3:brightness=-0.01,unsharp=5:5:0.5:5:5:0.0 -speed 0 processed/$1.webm
   else
-    ffmpeg -i raw/$1.webm -c:v libvpx-vp9 -b:v 0 -crf 42 -g 30 -an -threads 7 -vf crop=675:1200:622:120,scale=414:736,eq=saturation=1.3:brightness=-0.01,unsharp=5:5:0.5:5:5:0.0 -speed 0 processed/mobile/$1.webm
+    ffmpeg -i raw/mobile/$1.webm -c:v libvpx-vp9 -b:v 0 -crf 42 -g 30 -an -threads 7 -vf crop=414:736:0:120,eq=saturation=1.3:brightness=-0.01,unsharp=5:5:0.5:5:5:0.0 -speed 0 processed/mobile/$1.webm
   fi
 }
 
