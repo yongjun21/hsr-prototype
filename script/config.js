@@ -9,7 +9,7 @@ const TRANSIT = {
 }
 
 const CHECKPOINTS = {
-  overview: {coordinates: [115.292158, 31.088956], range: 3356561, tilt: 0, heading: 0},
+  overview: {coordinates: [115.292158, 31.088956], range: 3848616, tilt: 0, heading: 0},
   hongkong_west_kowloon: [
     {coordinates: [114.161703, 22.289759], range: 10000, tilt: 0, heading: 0},
     {coordinates: [114.161703, 22.289759], range: 6000, tilt: 54, heading: 36}
