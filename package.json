@@ -6,8 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "generate": "node script/generateKML.js",
-    "deploy": "deploy-assets video/processed high-speed-rail/videos",
-    "deploy:mobile": "deploy-assets video/processed/mobile high-speed-rail/videos/mobile"
+    "deploy": "deploy-assets video/processed high-speed-rail/videos"
   },
   "dependencies": {
     "@turf/bearing": "^6.0.1",
@@ -18,7 +17,7 @@
     "vue": "^2.5.17"
   },
   "devDependencies": {
-    "@st-graphics/backend": "^0.1.30",
+    "@st-graphics/backend": "^0.1.31",
     "@turf/bbox": "^6.0.1",
     "@turf/clean-coords": "^6.0.1",
     "@turf/distance": "^6.0.1",
