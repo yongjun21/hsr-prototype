@@ -12,7 +12,7 @@
     "@turf/bearing": "^6.0.1",
     "@turf/line-chunk": "^5.1.5",
     "file-saver": "^2.0.0-rc.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^0.50.0",
     "vue": "^2.5.17"
   },
